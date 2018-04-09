@@ -1,16 +1,23 @@
 // mongoose setup
 const mongoClient = require('mongoose');
 const mongoConnectionPoolSize = 10;
+
+// query option
+/*
+ example mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
+ - hostN : maybe you use replica db, you should write host name
+*/
+
 const dbURI = `mongodb://localhost/es6Test`;
 
 // mongoose create connection pool
-function initConnect() {
+function connect() {
     mongoClient.connect(dbURI, {
         poolSize: mongoConnectionPoolSize
     });
 }
 
-
+// mongoose connection event handler
 mongoClient.connection.on('connected', () => {
     console.log('Mongoose default connection open to ' + dbURI);
     console.log((mongoClient.connection.readyState === 1) ? "connect success" : "connect fail");
@@ -31,7 +38,9 @@ process.on('SIGINT', function() {
     });
 });
 
-// connect mongoDB server
-initConnect();
+// add schema
+//require('../models/member');
 
-module.exports = mongoClient;
+
+//exports module function
+exports.connect = connect;
