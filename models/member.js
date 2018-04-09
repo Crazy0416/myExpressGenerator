@@ -5,4 +5,4 @@ const memberSchema = new mongoClient.Schema({
    createOn: Date
 });
 
-const member = module.exports = mongoClient.model('member', memberSchema);
+module.exports = mongoClient.model('member', memberSchema);
