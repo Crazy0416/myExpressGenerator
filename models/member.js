@@ -1,4 +1,4 @@
-const mongoClient = require('../modules/myMongoose');
+const mongoClient = require('mongoose');
 
 const memberSchema = new mongoClient.Schema({
    name: String,

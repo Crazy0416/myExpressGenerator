@@ -15,7 +15,8 @@ app.set('view engine', 'ejs');
 
 
 // mongoDB setup
-const mongoClient = require('./modules/myMongoose');
+const mongoHandler = require('./modules/mongooseHandler');
+mongoHandler.connect();
 
 // app use setup
 app.use(logger('dev'));
