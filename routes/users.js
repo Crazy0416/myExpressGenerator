@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const wrap = require('express-async-wrap');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+const UserCtrl = require('../controllers/UserCtrl');
+
+// 회원가입
+router.route('/users/register')
+    .post(wrap(UserCtrl.register));
 
 module.exports = router;
