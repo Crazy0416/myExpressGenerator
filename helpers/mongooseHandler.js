@@ -13,7 +13,8 @@ const dbURI = `mongodb://localhost/es6Test`;
 // mongoose create connection pool
 function connect() {
     mongoClient.connect(dbURI, {
-        poolSize: mongoConnectionPoolSize
+        poolSize: mongoConnectionPoolSize,
+	    useNewUrlParser: true
     });
 }
 
