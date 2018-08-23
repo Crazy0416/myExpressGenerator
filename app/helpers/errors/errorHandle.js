@@ -1,4 +1,5 @@
-const mongoError = require('./mongoError');
+'use strict';
+const mongoError = require('./MongoError');
 
 module.exports = function (err, req, res, next) {
     // TODO: 에러 내용 로그에 출력

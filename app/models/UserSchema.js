@@ -1,6 +1,6 @@
 const mongoClient = require('mongoose');
 // Error class
-const MongoError = require('../errors/MongoError');
+const MongoError = require('../helpers/errors/MongoError');
 
 const UserSchema = new mongoClient.Schema({
    uid: {
