@@ -1,6 +1,7 @@
 // mongoose setup
 const mongoClient = require('mongoose');
 const mongoConnectionPoolSize = 10;
+const config = require('../../config/config');
 
 // query option
 /*
@@ -8,7 +9,7 @@ const mongoConnectionPoolSize = 10;
  - hostN : maybe you use replica db, you should write host name
 */
 
-const dbURI = `mongodb://localhost/es6Test`;
+const dbURI = `mongodb://${config.mongodb.HOST}/${config.mongodb.DATABASE}`;
 
 // mongoose create connection pool
 function connect() {
