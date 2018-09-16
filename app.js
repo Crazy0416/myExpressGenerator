@@ -6,7 +6,7 @@ const logger = require('./app/helpers/logHandler');
 const errorHandle = require('./app/helpers/errors/errorHandle');
 
 const indexRouter = require('./app/routes/index');
-const usersRouter = require('./app/routes/users');
+const usersRouter = require('./app/routes/userRouter');
 
 const app = express();
 

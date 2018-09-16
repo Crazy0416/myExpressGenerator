@@ -1,6 +1,7 @@
+'use strict';
+
 const mongoClient = require('mongoose');
-// Error class
-const MongoError = require('../helpers/errors/MongoError');
+const to = require('await-to-js').default;
 
 const UserSchema = new mongoClient.Schema({
    uid: {
@@ -22,16 +23,13 @@ const UserSchema = new mongoClient.Schema({
 // 회원가입 메서드
 UserSchema.statics.register = function(userData) {
    return new Promise(async function (resolve, reject) {
-      let userDoc;
-      try {
-          userDoc = await this.create(userData);
-          resolve(userDoc);
-      } catch (errCreate) {
-         // TODO: windston 에러 로그 출력
-         console.log(errCreate);
-         reject(new MongoError("회원가입을 하지 못했습니다.", 500, 500, new Date()));
+      let [errCreate, userDoc] = await to(this.create(userData));
+      if(errCreate) {
+        errCreate.message = "회원가입을 실패하였습니다."; reject(errCreate);
       }
+
+      resolve(userDoc);
    }.bind(this))
-}
+};
 
 module.exports = mongoClient.model('user', UserSchema);

@@ -1,17 +1,20 @@
 'use strict';
 
 const userSchema = require('../models/UserSchema');
+const to = require('await-to-js').default;
 
 exports.register = async(req, res, next) => {
-    // TODO: 패스워드 암호화
     let userData = {
         uid: req.body.uid,
         name: req.body.name,
         password: req.body.password
     };
 
-    let userDoc = await userSchema.register(userData);
-    console.log(userDoc);
+    let [err, userDoc] = await to(userSchema.register(userData));
+    if(err) {
+    	err.message = "회원가입을 실패하였습니다."; throw err;
+    }
+
     res.json({
         "success": true,
         "code": 200,

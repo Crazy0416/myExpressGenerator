@@ -5,16 +5,8 @@ const member = require('../models/UserSchema');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  debugger;
-  member.create({
-     name: "Kim MinHo",
-     createOn: Date.now()
-  }, (err, member) => {
-    if(err) console.log("ERR: ", err);
-
-    console.log("create member: ", member);
-    res.render('index', { title: 'Express' });
-  });
+    logger.info("test");
+    res.json({"ok":"Test"})
 });
 
 router.get('/find', (req, res, next) => {
